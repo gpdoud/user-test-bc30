@@ -10,6 +10,18 @@ import { User } from '../user.class';
 export class UserListComponent implements OnInit {
 
   users: User[] = [];
+  searchCriteria: string = "";
+  sortCriteria: string = "username";
+  ascSequence: boolean = false;
+
+  sortColumn(column: string): void {
+    if(column == this.sortCriteria) {
+      this.ascSequence = !this.ascSequence;
+      return;
+    }
+    this.sortCriteria = column;
+    this.ascSequence = true;
+  }
 
   constructor(
     private usersvc: UserService
